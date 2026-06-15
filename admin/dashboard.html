@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard – ConectaPet Admin</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="admin-body">
+
+  <div class="admin-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo"><i class="fa-solid fa-paw"></i> ConectaPet</div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="active"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <a href="animais.html"><i class="fa-solid fa-dog"></i> Animais</a>
+        <a href="adocoes.html"><i class="fa-solid fa-heart"></i> Adoções</a>
+        <a href="interessados.html"><i class="fa-solid fa-users"></i> Interessados</a>
+        <a href="apoios.html"><i class="fa-solid fa-hands-holding-heart"></i> Apoios & Doações</a>
+        <a href="configuracoes.html"><i class="fa-solid fa-gear"></i> Configurações</a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver site</a>
+        <a href="login.html" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <h1>Dashboard</h1>
+        <div class="topbar-right">
+          <span>Bem-vindo, <strong>ONG Amor Animal</strong></span>
+          <div class="topbar-badge">ONG Ativa <i class="fa-solid fa-circle-check"></i></div>
+        </div>
+      </header>
+
+      <!-- CARDS -->
+      <div class="dash-cards">
+        <div class="dash-card">
+          <div class="dash-card-icon purple"><i class="fa-solid fa-dog"></i></div>
+          <div>
+            <span class="dash-label">Animais cadastrados</span>
+            <span class="dash-value" id="totalAnimais">56</span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-icon green"><i class="fa-solid fa-heart"></i></div>
+          <div>
+            <span class="dash-label">Em adoção</span>
+            <span class="dash-value" id="totalAdocao">32</span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-icon blue"><i class="fa-solid fa-check-circle"></i></div>
+          <div>
+            <span class="dash-label">Adoções finalizadas</span>
+            <span class="dash-value" id="totalFinalizadas">24</span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-icon orange"><i class="fa-solid fa-clock"></i></div>
+          <div>
+            <span class="dash-label">Interessados</span>
+            <span class="dash-value" id="totalInteressados">89</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRAFICOS SIMULADOS -->
+      <div class="dash-charts">
+        <div class="dash-chart-card">
+          <h3>Adoções por mês</h3>
+          <div class="bar-chart" id="barChart"></div>
+        </div>
+        <div class="dash-chart-card">
+          <h3>Animais por espécie</h3>
+          <div class="pie-chart-wrap">
+            <div class="pie-chart" id="pieChart"></div>
+            <div class="pie-legend">
+              <div><span class="legend-dot dog"></span> Cães: 65%</div>
+              <div><span class="legend-dot cat"></span> Gatos: 35%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ÚLTIMOS INTERESSADOS -->
+      <div class="dash-table-card">
+        <div class="table-header">
+          <h3>Últimos interessados</h3>
+          <a href="interessados.html" class="btn btn-outline">Ver todos</a>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th>Pet</th>
+              <th>Data</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="interessadosTable">
+            <!-- Preenchido via JS -->
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>

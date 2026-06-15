@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalhes do Animal – ConectaPet</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo"><i class="fa-solid fa-paw"></i> ConectaPet</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="catalogo.html" class="active">Saiba mais</a></li>
+        <li><a href="formulario.html">Entre em contato</a></li>
+        <li><a href="index.html#missao">Apoie uma ONG</a></li>
+        <li><a href="index.html#footer">Contato</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="admin/login.html" class="btn btn-outline">Sign in</a>
+        <a href="formulario.html" class="btn btn-primary">Quero adotar</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section pet-detail">
+    <div class="container">
+      <nav class="breadcrumb" id="breadcrumb">
+        <a href="catalogo.html">Catálogo</a> &rsaquo; <span id="breadcrumbNome">Animal</span>
+      </nav>
+
+      <div class="pet-detail-inner" id="petDetailInner">
+        <!-- Preenchido via JS -->
+      </div>
+
+      <div class="antes-de-adotar">
+        <div class="antes-icon"><i class="fa-solid fa-heart"></i></div>
+        <div>
+          <h3>Antes de adotar</h3>
+          <p>Preencha nosso formulário de pré-adoção para que possamos conhecer você e sua casa. Assim, garantimos o melhor lar e a melhor adoção responsável.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2026 ConectaPet – Projeto UPX-4 | Newton Paiva</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/pet-detail.js"></script>
+</body>
+</html>

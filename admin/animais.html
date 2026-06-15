@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerenciar Animais – ConectaPet Admin</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="admin-body">
+
+  <div class="admin-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><i class="fa-solid fa-paw"></i> ConectaPet</div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <a href="animais.html" class="active"><i class="fa-solid fa-dog"></i> Animais</a>
+        <a href="adocoes.html"><i class="fa-solid fa-heart"></i> Adoções</a>
+        <a href="interessados.html"><i class="fa-solid fa-users"></i> Interessados</a>
+        <a href="apoios.html"><i class="fa-solid fa-hands-holding-heart"></i> Apoios & Doações</a>
+        <a href="configuracoes.html"><i class="fa-solid fa-gear"></i> Configurações</a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../index.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver site</a>
+        <a href="login.html" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <h1>Animais</h1>
+        <button class="btn btn-primary" id="btnNovoAnimal">
+          <i class="fa-solid fa-plus"></i> Novo animal
+        </button>
+      </header>
+
+      <div class="admin-filters">
+        <input type="text" id="searchAnimal" placeholder="Buscar por nome..." class="search-input" />
+        <select id="filtroEspecieAdmin">
+          <option value="">Espécie</option>
+          <option value="Cachorro">Cachorro</option>
+          <option value="Gato">Gato</option>
+        </select>
+        <select id="filtroPorteAdmin">
+          <option value="">Porte</option>
+          <option value="Pequeno">Pequeno</option>
+          <option value="Médio">Médio</option>
+          <option value="Grande">Grande</option>
+        </select>
+        <select id="filtroIdadeAdmin">
+          <option value="">Idade</option>
+          <option value="Filhote">Filhote</option>
+          <option value="Adulto">Adulto</option>
+          <option value="Idoso">Idoso</option>
+        </select>
+        <select id="filtroStatusAdmin">
+          <option value="">Status</option>
+          <option value="Disponível">Disponível</option>
+          <option value="Adotado">Adotado</option>
+        </select>
+      </div>
+
+      <div class="dash-table-card">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Animal</th>
+              <th>Espécie</th>
+              <th>Porte</th>
+              <th>Idade</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="animaisTable"></tbody>
+        </table>
+        <div class="pagination" id="paginationAdmin"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL CADASTRO/EDIÇÃO -->
+  <div class="modal-overlay hidden" id="modalAnimal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h2 id="modalTitle">Novo Animal</h2>
+        <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="formAnimal" novalidate>
+        <input type="hidden" id="animalId" />
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nome *</label>
+            <input type="text" id="animalNome" required />
+          </div>
+          <div class="form-group">
+            <label>Espécie *</label>
+            <select id="animalEspecie" required>
+              <option value="">Selecione</option>
+              <option value="Cachorro">Cachorro</option>
+              <option value="Gato">Gato</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Porte *</label>
+            <select id="animalPorte" required>
+              <option value="">Selecione</option>
+              <option value="Pequeno">Pequeno</option>
+              <option value="Médio">Médio</option>
+              <option value="Grande">Grande</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Idade *</label>
+            <input type="text" id="animalIdade" placeholder="Ex: 2 anos" required />
+          </div>
+          <div class="form-group">
+            <label>Sexo *</label>
+            <select id="animalSexo" required>
+              <option value="">Selecione</option>
+              <option value="Macho">Macho</option>
+              <option value="Fêmea">Fêmea</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Descrição</label>
+          <textarea id="animalDescricao" rows="3" placeholder="Conte sobre a personalidade e histórico do animal..."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="animalVacinado" />
+            <label>Vacinado</label>
+          </div>
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="animalCastrado" />
+            <label>Castrado</label>
+          </div>
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="animalVermifugado" />
+            <label>Vermifugado</label>
+          </div>
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="animalNecessidades" />
+            <label>Necessidades especiais</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select id="animalStatus">
+            <option value="Disponível">Disponível</option>
+            <option value="Adotado">Adotado</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-outline" id="btnCancelar">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Salvar animal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/admin-animais.js"></script>
+</body>
+</html>

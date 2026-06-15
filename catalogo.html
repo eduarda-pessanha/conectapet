@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo de Animais – ConectaPet</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo"><i class="fa-solid fa-paw"></i> ConectaPet</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="catalogo.html" class="active">Saiba mais</a></li>
+        <li><a href="formulario.html">Entre em contato</a></li>
+        <li><a href="index.html#missao">Apoie uma ONG</a></li>
+        <li><a href="index.html#footer">Contato</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="admin/login.html" class="btn btn-outline">Sign in</a>
+        <a href="formulario.html" class="btn btn-primary">Quero adotar</a>
+      </div>
+      <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <section class="section catalogo-page">
+    <div class="container">
+      <h1>Todos os animais</h1>
+      <p class="subtitle">Encontre seu novo companheiro</p>
+
+      <!-- BUSCA + FILTROS -->
+      <div class="filtros-bar">
+        <input type="text" id="searchInput" placeholder="Buscar por nome..." class="search-input" />
+        <button class="btn btn-outline" id="btnFiltros"><i class="fa-solid fa-sliders"></i> Filtros</button>
+      </div>
+
+      <div class="filtros-avancados" id="filtrosAvancados">
+        <div class="filtros-row">
+          <div class="filtro-group">
+            <label>Espécie</label>
+            <select id="filtroEspecie">
+              <option value="">Todas</option>
+              <option value="Cachorro">Cachorro</option>
+              <option value="Gato">Gato</option>
+            </select>
+          </div>
+          <div class="filtro-group">
+            <label>Porte</label>
+            <select id="filtroPorte">
+              <option value="">Todos</option>
+              <option value="Pequeno">Pequeno</option>
+              <option value="Médio">Médio</option>
+              <option value="Grande">Grande</option>
+            </select>
+          </div>
+          <div class="filtro-group">
+            <label>Idade</label>
+            <select id="filtroIdade">
+              <option value="">Todas</option>
+              <option value="Filhote">Filhote</option>
+              <option value="Adulto">Adulto</option>
+              <option value="Idoso">Idoso</option>
+            </select>
+          </div>
+          <div class="filtro-group">
+            <label>Sexo</label>
+            <select id="filtroSexo">
+              <option value="">Todos</option>
+              <option value="Macho">Macho</option>
+              <option value="Fêmea">Fêmea</option>
+            </select>
+          </div>
+          <div class="filtro-group">
+            <label>Necessidades especiais</label>
+            <select id="filtroNecessidades">
+              <option value="">Todas</option>
+              <option value="sim">Com necessidades especiais</option>
+              <option value="nao">Sem necessidades especiais</option>
+            </select>
+          </div>
+          <button class="btn btn-outline" id="btnLimpar">Limpar filtros</button>
+        </div>
+      </div>
+
+      <div class="pets-grid" id="catalogoGrid">
+        <!-- Preenchido via JS -->
+      </div>
+
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo"><i class="fa-solid fa-paw"></i> ConectaPet</span>
+        <p>Conectando corações, mudando vidas.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 ConectaPet – Projeto UPX-4 | Newton Paiva</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/catalogo.js"></script>
+</body>
+</html>
