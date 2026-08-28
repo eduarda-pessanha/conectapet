@@ -15,9 +15,19 @@ export default function Dashboard() {
     api.getInteressados().then(setInteressados).catch(() => {});
   }, []);
 
-  const disponíveis = pets.filter(p => p.status === 'Disponível').length;
+  const disponiveis = pets.filter(p => p.status === 'Disponível').length;
   const adotados    = pets.filter(p => p.status === 'Adotado').length;
   const maxBar = Math.max(...BAR_DATA);
+
+  const totalPets = pets.length;
+  const caes   = pets.filter(p => p.especie === 'Cachorro').length;
+  const gatos  = pets.filter(p => p.especie === 'Gato').length;
+  const outros = totalPets - caes - gatos;
+  const caesPct   = totalPets ? Math.round((caes / totalPets) * 100) : 0;
+  const gatosPct  = totalPets ? Math.round((gatos / totalPets) * 100) : 0;
+  const outrosPct = totalPets ? Math.max(0, 100 - caesPct - gatosPct) : 0;
+  const caesDeg  = totalPets ? (caes / totalPets) * 360 : 0;
+  const gatosDeg = totalPets ? caesDeg + (gatos / totalPets) * 360 : 0;
 
   function statusClass(s) {
     if (s === 'Novo') return 'novo';
@@ -41,7 +51,7 @@ export default function Dashboard() {
         <div className="dash-cards">
           {[
             { icon: 'fa-dog',          color: 'purple', label: 'Animais cadastrados',  val: pets.length },
-            { icon: 'fa-heart',        color: 'green',  label: 'Em adoção',             val: disponíveis },
+            { icon: 'fa-heart',        color: 'green',  label: 'Em adoção',             val: disponiveis },
             { icon: 'fa-check-circle', color: 'blue',   label: 'Adoções finalizadas',   val: adotados },
             { icon: 'fa-clock',        color: 'orange', label: 'Interessados',          val: interessados.length },
           ].map(c => (
@@ -74,10 +84,16 @@ export default function Dashboard() {
           <div className="dash-chart-card">
             <h3>Animais por espécie</h3>
             <div className="pie-chart-wrap">
-              <div className="pie-chart" />
+              <div
+                className="pie-chart"
+                style={totalPets ? { background: `conic-gradient(var(--purple) 0deg ${caesDeg}deg, #a78bfa ${caesDeg}deg ${gatosDeg}deg, var(--gray-300) ${gatosDeg}deg 360deg)` } : undefined}
+              />
               <div className="pie-legend">
-                <div><span className="legend-dot dog" /> Cães: 65%</div>
-                <div><span className="legend-dot cat" /> Gatos: 35%</div>
+                <div><span className="legend-dot dog" /> Cães: {caesPct}%</div>
+                <div><span className="legend-dot cat" /> Gatos: {gatosPct}%</div>
+                {outros > 0 && (
+                  <div><span className="legend-dot" style={{ background: 'var(--gray-300)' }} /> Outros: {outrosPct}%</div>
+                )}
               </div>
             </div>
           </div>
