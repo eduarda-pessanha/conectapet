@@ -6,6 +6,18 @@ async function request(path, options = {}) {
   if (token) headers['Authorization'] = `Bearer ${token}`;
 
   const res = await fetch(BASE + path, { ...options, headers });
+
+  if (res.status === 401) {
+    // Sessão expirada ou token inválido: limpa os dados locais e manda o admin de volta ao login,
+    // em vez de deixar a tela travada com uma requisição falhando silenciosamente.
+    localStorage.removeItem('token');
+    localStorage.removeItem('adminNome');
+    if (!window.location.pathname.startsWith('/admin/login')) {
+      window.location.href = '/admin/login';
+    }
+    throw new Error('Sessão expirada. Faça login novamente.');
+  }
+
   if (!res.ok) {
     const err = await res.json().catch(() => ({ message: res.statusText }));
     throw new Error(err.message || 'Erro na requisição');
