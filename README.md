@@ -31,7 +31,7 @@ O ConectaPet centraliza o catálogo de animais disponíveis para adoção, permi
 ## Arquitetura
 
 ```
-upx4-main/
+conectapet/
 ├── backend/
 │   ├── server.js          # Entrada da API Express
 │   ├── database.js        # Schema, seed e conexão SQLite
@@ -51,18 +51,11 @@ A API expõe rotas públicas para consulta de animais e envio de formulário de 
 
 ## Como executar
 
-**Backend**
-```bash
-cd backend
-npm install
-npm run dev   # http://localhost:3001
-```
+Na raiz do projeto:
 
-**Frontend**
 ```bash
-cd frontend
-npm install
-npm run dev   # http://localhost:5173
+npm run install:all   # instala as dependências do backend e do frontend
+npm run dev            # sobe backend (http://localhost:3001) e frontend (http://localhost:5173) juntos
 ```
 
 **Login administrativo (demo)**
@@ -70,6 +63,8 @@ npm run dev   # http://localhost:5173
 email: admin@conectapet.com
 senha: 123456
 ```
+
+> **Nota:** os gráficos do dashboard administrativo (`frontend/src/pages/admin/Dashboard.jsx`) atualmente usam dados de exemplo fixos, não os dados reais dos animais cadastrados. Essa é uma melhoria planejada.
 
 ## Rotas da API
 
